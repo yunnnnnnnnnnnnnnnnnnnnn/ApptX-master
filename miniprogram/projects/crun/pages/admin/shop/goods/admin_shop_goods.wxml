@@ -1,0 +1,44 @@
+<view wx:if="{{!isLoad}}" class="margin-top load loading text-l text-admin"></view>
+
+<view wx:if="{{isLoad}}" class="main-admin padding-project">
+	<view class="margin-bottom-sm">
+		<button class="btn mid radius bg-admin text-white" bindtap="bindAdd">添加商品</button>
+	</view>
+
+	<view wx:if="{{formShow}}" class="admin-comm-list margin-bottom-sm">
+		<view class="item">
+			<view class="info-item">
+				<view class="title">名称</view>
+				<view class="mao">：</view>
+				<input class="content" placeholder="商品名" model:value="{{goodName}}" />
+			</view>
+			<view class="info-item">
+				<view class="title">单价(元)</view>
+				<view class="mao">：</view>
+				<input class="content" type="digit" placeholder="如 12.5" model:value="{{goodPrice}}" />
+			</view>
+			<view class="info-item">
+				<view class="title">排序</view>
+				<view class="mao">：</view>
+				<input class="content" type="number" model:value="{{goodOrder}}" />
+			</view>
+			<view class="flex padding-top-sm">
+				<button class="flex-sub margin-right-xs bg-grey light" bindtap="bindCancelForm">取消</button>
+				<button class="flex-sub bg-admin text-white" bindtap="bindSaveGood">保存</button>
+			</view>
+		</view>
+	</view>
+
+	<view class="admin-comm-list">
+		<view wx:if="{{!list.length}}" class="text-grey text-center padding">暂无商品</view>
+		<view class="item" wx:for="{{list}}" wx:key="_id">
+			<view class="header">
+				<view class="left">{{item.GOOD_NAME}}</view>
+				<view class="right text-red">¥{{item.priceYuan}}</view>
+			</view>
+			<view class="padding-top-sm">
+				<button class="bg-orange light" size="mini" data-id="{{item._id}}" bindtap="bindDelGood">删除</button>
+			</view>
+		</view>
+	</view>
+</view>

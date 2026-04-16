@@ -1,0 +1,28 @@
+<view wx:if="{{isLoad===null}}" class="margin-top load notexist text-l load-project"></view>
+<view wx:if="{{isLoad===false}}" class="margin-top load loading text-l load-project"></view>
+
+<view wx:if="{{isLoad}}" class="main padding-project safe-bottom">
+	<view class="margin-bottom text-bold">{{shopName}}</view>
+	<view class="text-s text-grey margin-bottom" wx:if="{{shopAddr}}">取货：{{shopAddr}}</view>
+
+	<view wx:if="{{!goods.length}}" class="text-grey">该商家暂无商品</view>
+
+	<view class="card-project shadow-project padding margin-bottom-sm" wx:for="{{goods}}" wx:key="_id">
+		<view class="flex-row j_b">
+			<view class="text-cut flex-sub">{{item.GOOD_NAME}}</view>
+			<view class="text-red margin-left-sm">¥{{item.priceYuan}}</view>
+		</view>
+		<view class="flex-row j_b margin-top-sm">
+			<view class="text-s text-grey">数量</view>
+			<view class="flex-row align-center">
+				<view class="padding-lr-sm bg-grey light radius" data-id="{{item._id}}" data-delta="-1" bindtap="bindStep">−</view>
+				<text class="padding-lr">{{item.pickQty||0}}</text>
+				<view class="padding-lr-sm bg-project light radius" data-id="{{item._id}}" data-delta="1" bindtap="bindStep">+</view>
+			</view>
+		</view>
+	</view>
+
+	<view class="padding-top-lg">
+		<button class="btn-base btn-project" bindtap="bindGoPost">选好了，去发布代买</button>
+	</view>
+</view>

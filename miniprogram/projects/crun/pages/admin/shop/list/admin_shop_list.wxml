@@ -1,0 +1,52 @@
+<view wx:if="{{!isLoad}}" class="margin-top load loading text-l text-admin"></view>
+
+<view wx:if="{{isLoad}}" class="main-admin padding-project">
+	<view class="margin-bottom-sm">
+		<button class="btn mid radius bg-admin text-white" bindtap="bindAdd">添加商家</button>
+	</view>
+
+	<view wx:if="{{formShow}}" class="admin-comm-list margin-bottom-sm">
+		<view class="item">
+			<view class="info-item">
+				<view class="title">名称</view>
+				<view class="mao">：</view>
+				<input class="content" placeholder="商家名称" model:value="{{formName}}" />
+			</view>
+			<view class="info-item">
+				<view class="title">地址</view>
+				<view class="mao">：</view>
+				<input class="content" placeholder="取货/门店地址" model:value="{{formAddr}}" />
+			</view>
+			<view class="info-item">
+				<view class="title">排序</view>
+				<view class="mao">：</view>
+				<input class="content" type="number" model:value="{{formOrder}}" />
+			</view>
+			<view class="flex padding-top-sm">
+				<button class="flex-sub margin-right-xs bg-grey light" bindtap="bindCancelForm">取消</button>
+				<button class="flex-sub bg-admin text-white" bindtap="bindSaveAdd">保存</button>
+			</view>
+		</view>
+	</view>
+
+	<view class="admin-comm-list">
+		<view wx:if="{{!list.length}}" class="text-grey text-center padding">暂无商家，请先添加</view>
+		<view class="item" wx:for="{{list}}" wx:key="_id">
+			<view class="header">
+				<view class="left text-cut">{{item.SHOP_NAME}}</view>
+				<view class="right text-s text-grey" wx:if="{{item.SHOP_STATUS===0}}">已下架</view>
+			</view>
+			<view class="info">
+				<view class="info-item">
+					<view class="title">地址</view>
+					<view class="mao">：</view>
+					<view class="content">{{item.SHOP_ADDR||'—'}}</view>
+				</view>
+			</view>
+			<view class="flex padding-top-sm">
+				<button class="flex-sub margin-right-xs bg-green light" size="mini" data-id="{{item._id}}" bindtap="bindGoGoods">商品管理</button>
+				<button class="flex-sub bg-orange light" size="mini" data-id="{{item._id}}" bindtap="bindDel">删除</button>
+			</view>
+		</view>
+	</view>
+</view>

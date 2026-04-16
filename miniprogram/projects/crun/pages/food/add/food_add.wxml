@@ -1,0 +1,15 @@
+<view wx:if="{{!isLoad}}" class="margin-top load loading text-l text-grey"></view>
+<view class="main" wx:if="{{isLoad}}">
+
+	<view class="padding-project" wx:if="{{foodShopMeta}}">
+		<view class="text-s text-grey">已选商家：{{foodShopMeta.shopName}}（{{foodShopMeta.items.length}} 项）</view>
+	</view>
+	<view class="padding-project">
+		<button bindtap="bindGoShop" class="btn round bg-blue light text-black">从合作商家选购商品</button>
+	</view>
+
+	<include src="food_form_tpl.wxml" />
+
+
+	<button bindtap="bindFormSubmit" class="btn-base btn-project">提交</button>
+</view>

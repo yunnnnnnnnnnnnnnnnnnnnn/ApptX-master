@@ -1,0 +1,11 @@
+<view wx:if="{{!isLoad}}" class="margin-top load loading text-l load-project"></view>
+
+<view wx:if="{{isLoad}}" class="main padding-project">
+	<view wx:if="{{!list.length}}" class="text-grey text-center margin-top">暂无合作商家</view>
+
+	<view class="margin-bottom-sm shadow-project card-project padding" wx:for="{{list}}" wx:key="_id" data-id="{{item._id}}" bindtap="bindGoGoods">
+		<view class="text-lg text-bold">{{item.SHOP_NAME}}</view>
+		<view class="text-s text-grey margin-top-xs" wx:if="{{item.SHOP_ADDR}}">{{item.SHOP_ADDR}}</view>
+		<view class="text-s text-project margin-top-xs">选商品 ›</view>
+	</view>
+</view>
